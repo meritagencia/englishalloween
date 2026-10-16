@@ -19,6 +19,26 @@
   <!-- UTMify tracking script -->
   <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck="true" data-utmify-prevent-subids="true" async defer></script>
 
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4651945478371062');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4651945478371062&ev=PageView&noscript=1"
+    alt="" />
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <style>
     :root {
       /* Paleta original refinada */
@@ -1364,7 +1384,7 @@
             <li>Atividades prontas para imprimir em A4</li>
             <li>Acesso imediato ao material digital</li>
           </ul>
-          <a class="btn outline-light" href="https://pay.wiapy.com/EQj0qga-qk_q">Quero o básico</a>
+          <a class="btn outline-light" href="https://pay.wiapy.com/EQj0qga-qk_q" onclick="if(typeof fbq==='function'){fbq('track','InitiateCheckout',{content_name:'Pacote Basico',value:10.00,currency:'BRL'});}">Quero o básico</a>
           <p class="plan-guarantee-note">Garantia de 7 dias</p>
         </article>
 
@@ -1387,7 +1407,7 @@
             <li class="premium-item">Slides editáveis para projetor</li>
             <li class="premium-item">Atualizações gratuitas do material</li>
           </ul>
-          <a class="btn primary" href="https://pay.wiapy.com/bR6cSFcwKdlA">Quero o premium ›</a>
+          <a class="btn primary" href="https://pay.wiapy.com/bR6cSFcwKdlA" onclick="if(typeof fbq==='function'){fbq('track','InitiateCheckout',{content_name:'Kit Teacher Premium',value:17.90,currency:'BRL'});}">Quero o premium ›</a>
           <p class="plan-guarantee-note">Garantia de 7 dias • Acesso imediato</p>
         </article>
       </div>
@@ -1550,6 +1570,20 @@
     }
     setupSwipe(img, function() { go(cur + 1); }, function() { go(cur - 1); });
     setupSwipe(testImg, function() { goTest(testCur + 1); }, function() { goTest(testCur - 1); });
+
+    // Rastreamento automático InitiateCheckout para links de checkout Wiapy
+    document.querySelectorAll('a[href*="pay.wiapy.com"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var isPremium = link.href.indexOf('bR6cSFcwKdlA') !== -1;
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            content_name: isPremium ? 'Kit Teacher Premium' : 'Pacote Basico',
+            value: isPremium ? 17.90 : 10.00,
+            currency: 'BRL'
+          });
+        }
+      });
+    });
 
     // Contador regressivo de 4h (reinicia por visitante a cada 4h)
     (function() {
