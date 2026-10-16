@@ -11,26 +11,40 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <!-- Preconnect & DNS Prefetch para recursos externos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
+
+  <!-- Preload da fonte principal para evitar FOUT -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" as="style">
+
+  <!-- Google Fonts: Inter & JetBrains Mono – pesos reduzidos + display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Preload da imagem hero (LCP) -->
+  <link rel="preload" as="image" href="topo.webp" type="image/webp" media="(min-width: 921px)">
+  <link rel="preload" as="image" href="TopoMobile.webp" type="image/webp" media="(max-width: 920px)">
 
   <!-- UTMify tracking script -->
   <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck="true" data-utmify-prevent-subids="true" async defer></script>
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code – carregamento adiado para não bloquear renderização -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4651945478371062');
-    fbq('track', 'PageView');
+    // Adia o pixel do Facebook para depois do carregamento inicial
+    window.addEventListener('load', function() {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '4651945478371062');
+      fbq('track', 'PageView');
+    });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -85,11 +99,11 @@
     img { max-width: 100%; display: block; }
 
     .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-    .section { padding: 96px 0; position: relative; }
+    .section { padding: 96px 0; position: relative; contain: layout style; }
     .section.surface-alt { background: var(--surface); }
     .section.clean-white { background: var(--bg); }
 
-    /* Rotating Beam Animation */
+    /* Rotating Beam Animation – usa will-change apenas no hover para economizar GPU */
     @keyframes rotate-beam {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -220,8 +234,9 @@
       pointer-events: none;
       transition: opacity 220ms ease;
       animation: rotate-beam 2.2s linear infinite;
+      animation-play-state: paused;
     }
-    .btn:hover::before { opacity: 1; }
+    .btn:hover::before { opacity: 1; animation-play-state: running; }
     .btn:hover { transform: translateY(-2px); }
 
     .btn.primary {
@@ -249,7 +264,6 @@
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
     }
     .btn.outline-dark:hover {
       background: rgba(255, 255, 255, 0.18);
@@ -274,6 +288,7 @@
       color: var(--hero-fg);
       padding: 76px 0 96px;
       overflow: hidden;
+      contain: layout style;
     }
     .hero::before {
       content: "";
@@ -421,8 +436,6 @@
       bottom: 20px;
       right: 20px;
       background: rgba(28, 11, 48, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 182, 39, 0.4);
       border-radius: 12px;
       padding: 10px 16px;
@@ -461,6 +474,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 24px 0;
+      contain: layout style;
     }
     .stats-grid {
       display: grid;
@@ -741,6 +755,7 @@
     .pricing-section {
       background: radial-gradient(circle at 20% 0%, #4b1d7a 0%, #2a1245 60%, #190a2b 100%);
       color: #fff;
+      contain: layout style;
     }
     .pricing-wrap {
       max-width: 980px;
@@ -760,7 +775,6 @@
       padding: 12px 18px;
       min-width: 82px;
       text-align: center;
-      backdrop-filter: blur(8px);
     }
     .cd-unit strong {
       display: block;
@@ -1155,7 +1169,7 @@
         <div class="hero-content">
           <div class="eyebrow dark">Recurso Pedagógico em PDF • 100 Páginas</div>
 
-          <!-- Showcase Mockup exibido exclusivamente no Mobile com TopoMobile.jpg -->
+          <!-- Showcase Mockup exibido exclusivamente no Mobile com TopoMobile.webp -->
           <div class="showcase showcase-mobile">
             <div class="showcase-window">
               <div class="showcase-bar">
@@ -1167,7 +1181,10 @@
                 <span class="window-tag">HALLOWEEN_PACK_2026.PDF</span>
               </div>
               <div class="showcase-image-wrap">
-                <img src="TopoMobile.jpg" alt="Capa oficial mobile do Kit 100 Atividades de Halloween em Inglês">
+                <picture>
+                  <source srcset="TopoMobile.webp" type="image/webp">
+                  <img src="TopoMobile.jpg" alt="Capa oficial mobile do Kit 100 Atividades de Halloween em Inglês" width="800" height="450" fetchpriority="high">
+                </picture>
               </div>
             </div>
           </div>
@@ -1199,7 +1216,10 @@
               <span class="window-tag">HALLOWEEN_PACK_2026.PDF</span>
             </div>
             <div class="showcase-image-wrap">
-              <img src="topo.png" alt="Capa oficial do Kit 100 Atividades de Halloween em Inglês">
+              <picture>
+                <source srcset="topo.webp" type="image/webp">
+                <img src="topo.png" alt="Capa oficial do Kit 100 Atividades de Halloween em Inglês" width="800" height="800" fetchpriority="high">
+              </picture>
               <div class="showcase-floating-tag">
                 <div class="floating-tag-icon">100</div>
                 <div class="floating-tag-text">
@@ -1251,7 +1271,10 @@
         <div class="carousel-layout">
           <button class="carousel-nav-btn" id="prev" aria-label="Atividade anterior">‹</button>
           <div class="carousel-viewport">
-            <img id="sample" src="carrossel01.png" alt="Amostra 1 das atividades de Halloween em inglês">
+            <picture>
+              <source id="sampleSource" srcset="carrossel01.webp" type="image/webp">
+              <img id="sample" src="carrossel01.png" alt="Amostra 1 das atividades de Halloween em inglês" width="700" height="989" loading="lazy">
+            </picture>
           </div>
           <button class="carousel-nav-btn" id="next" aria-label="Próxima atividade">›</button>
         </div>
@@ -1333,7 +1356,10 @@
         <div class="test-carousel-layout">
           <button class="carousel-nav-btn" id="prevTest" aria-label="Depoimento anterior">‹</button>
           <div class="test-carousel-viewport">
-            <img id="testSample" src="depoimento01.png" alt="Depoimento real 1 de cliente sobre as atividades de Halloween">
+            <picture>
+              <source id="testSampleSource" srcset="depoimento01.webp" type="image/webp">
+              <img id="testSample" src="depoimento01.png" alt="Depoimento real 1 de cliente sobre as atividades de Halloween" width="560" height="700" loading="lazy">
+            </picture>
           </div>
           <button class="carousel-nav-btn" id="nextTest" aria-label="Próximo depoimento">›</button>
         </div>
@@ -1472,19 +1498,20 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts – no final do body para não bloquear renderização -->
   <script>
-    // Carrossel de amostras
+    // Carrossel de amostras (WebP com fallback PNG)
     var samples = [
-      "carrossel01.png",
-      "carrossel02.png",
-      "carrossel03.png",
-      "carrossel04.png",
-      "carrossel05.png",
-      "carrossel06.png"
+      {webp: "carrossel01.webp", png: "carrossel01.png"},
+      {webp: "carrossel02.webp", png: "carrossel02.png"},
+      {webp: "carrossel03.webp", png: "carrossel03.png"},
+      {webp: "carrossel04.webp", png: "carrossel04.png"},
+      {webp: "carrossel05.webp", png: "carrossel05.png"},
+      {webp: "carrossel06.webp", png: "carrossel06.png"}
     ];
     var cur = 0;
     var img = document.getElementById('sample');
+    var imgSource = document.getElementById('sampleSource');
     var dots = document.getElementById('dots');
     var counter = document.getElementById('counter');
 
@@ -1500,7 +1527,8 @@
       cur = (i + samples.length) % samples.length;
       img.style.opacity = '0.3';
       setTimeout(function() {
-        img.src = samples[cur];
+        imgSource.srcset = samples[cur].webp;
+        img.src = samples[cur].png;
         img.alt = 'Amostra ' + (cur + 1) + ' das atividades de Halloween em inglês';
         img.style.opacity = '1';
       }, 100);
@@ -1515,14 +1543,15 @@
     document.getElementById('prev').onclick = function() { go(cur - 1); };
     document.getElementById('next').onclick = function() { go(cur + 1); };
 
-    // Carrossel de depoimentos (depoimento01.png, depoimento02.png, depoimento03.png)
+    // Carrossel de depoimentos (WebP com fallback PNG)
     var testSamples = [
-      "depoimento01.png",
-      "depoimento02.png",
-      "depoimento03.png"
+      {webp: "depoimento01.webp", png: "depoimento01.png"},
+      {webp: "depoimento02.webp", png: "depoimento02.png"},
+      {webp: "depoimento03.webp", png: "depoimento03.png"}
     ];
     var testCur = 0;
     var testImg = document.getElementById('testSample');
+    var testImgSource = document.getElementById('testSampleSource');
     var testDots = document.getElementById('testDots');
     var testCounter = document.getElementById('testCounter');
 
@@ -1538,7 +1567,8 @@
       testCur = (i + testSamples.length) % testSamples.length;
       testImg.style.opacity = '0.3';
       setTimeout(function() {
-        testImg.src = testSamples[testCur];
+        testImgSource.srcset = testSamples[testCur].webp;
+        testImg.src = testSamples[testCur].png;
         testImg.alt = 'Depoimento real ' + (testCur + 1) + ' sobre as atividades de Halloween';
         testImg.style.opacity = '1';
       }, 100);
