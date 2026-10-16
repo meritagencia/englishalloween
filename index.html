@@ -138,6 +138,7 @@
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
     .eyebrow.dark {
       color: var(--orange-soft);
@@ -1068,6 +1069,17 @@
       .topbar .t {
         font-size: 11px;
         padding: 1px 6px;
+      }
+      .eyebrow {
+        font-size: clamp(9.5px, 2.7vw, 11px);
+        padding: 5px 12px;
+        letter-spacing: 0.04em;
+        gap: 6px;
+        white-space: nowrap;
+      }
+      .eyebrow::before {
+        width: 6px;
+        height: 6px;
       }
       .section { padding: 52px 0; }
       .showcase-mobile {
