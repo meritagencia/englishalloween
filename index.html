@@ -1372,7 +1372,7 @@
             <li>Atividades prontas para imprimir em A4</li>
             <li>Acesso imediato ao material digital</li>
           </ul>
-          <a class="btn outline-light" href="https://pay.wiapy.com/EQj0qga-qk_q" onclick="if(typeof fbq==='function'){fbq('track','InitiateCheckout',{content_name:'Pacote Basico',value:10.00,currency:'BRL'});}">Quero o básico</a>
+          <a class="btn outline-light" href="https://pay.wiapy.com/EQj0qga-qk_q">Quero o básico</a>
           <p class="plan-guarantee-note">Garantia de 7 dias</p>
         </article>
 
@@ -1395,7 +1395,7 @@
             <li class="premium-item">Slides editáveis para projetor</li>
             <li class="premium-item">Atualizações gratuitas do material</li>
           </ul>
-          <a class="btn primary" href="https://pay.wiapy.com/bR6cSFcwKdlA" onclick="if(typeof fbq==='function'){fbq('track','InitiateCheckout',{content_name:'Kit Teacher Premium',value:17.90,currency:'BRL'});}">Quero o premium ›</a>
+          <a class="btn primary" href="https://pay.wiapy.com/bR6cSFcwKdlA">Quero o premium ›</a>
           <p class="plan-guarantee-note">Garantia de 7 dias • Acesso imediato</p>
         </article>
       </div>
@@ -1631,21 +1631,6 @@
     });
     // Fallback de segurança se o visitante não interagir por 3.5 segundos
     setTimeout(loadTracking, 3500);
-
-    // Rastreamento automático InitiateCheckout para links de checkout Wiapy
-    document.querySelectorAll('a[href*="pay.wiapy.com"]').forEach(function(link) {
-      link.addEventListener('click', function() {
-        loadTracking();
-        var isPremium = link.href.indexOf('bR6cSFcwKdlA') !== -1;
-        if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout', {
-            content_name: isPremium ? 'Kit Teacher Premium' : 'Pacote Basico',
-            value: isPremium ? 17.90 : 10.00,
-            currency: 'BRL'
-          });
-        }
-      });
-    });
   </script>
 </body>
 </html>
