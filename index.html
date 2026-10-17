@@ -17,41 +17,15 @@
   <link rel="dns-prefetch" href="https://connect.facebook.net">
   <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
 
-  <!-- Preload da fonte principal para evitar FOUT -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" as="style">
-
-  <!-- Google Fonts: Inter & JetBrains Mono – pesos reduzidos + display=swap -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-
-  <!-- Preload da imagem hero (LCP) -->
-  <link rel="preload" as="image" href="topo.webp" type="image/webp" media="(min-width: 921px)">
-  <link rel="preload" as="image" href="TopoMobile.webp" type="image/webp" media="(max-width: 920px)">
-
-  <!-- UTMify tracking script -->
-  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck="true" data-utmify-prevent-subids="true" async defer></script>
-
-  <!-- Meta Pixel Code – carregamento adiado para não bloquear renderização -->
-  <script>
-    // Adia o pixel do Facebook para depois do carregamento inicial
-    window.addEventListener('load', function() {
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '4651945478371062');
-      fbq('track', 'PageView');
-    });
-  </script>
+  <!-- Google Fonts: Carregamento assíncrono não-bloqueante (elimina 1180ms de bloqueio) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4651945478371062&ev=PageView&noscript=1"
-    alt="" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap">
   </noscript>
-  <!-- End Meta Pixel Code -->
+
+  <!-- Preload da imagem hero (LCP) com fetchpriority high para desktop e mobile -->
+  <link rel="preload" as="image" href="topo.webp" type="image/webp" media="(min-width: 921px)" fetchpriority="high">
+  <link rel="preload" as="image" href="TopoMobile.webp" type="image/webp" media="(max-width: 920px)" fetchpriority="high">
 
   <style>
     :root {
@@ -1181,10 +1155,7 @@
                 <span class="window-tag">HALLOWEEN_PACK_2026.PDF</span>
               </div>
               <div class="showcase-image-wrap">
-                <picture>
-                  <source srcset="TopoMobile.webp" type="image/webp">
-                  <img src="TopoMobile.jpg" alt="Capa oficial mobile do Kit 100 Atividades de Halloween em Inglês" width="800" height="450" fetchpriority="high">
-                </picture>
+                <img src="TopoMobile.webp" alt="Capa oficial mobile do Kit 100 Atividades de Halloween em Inglês" width="800" height="450" fetchpriority="high">
               </div>
             </div>
           </div>
@@ -1216,10 +1187,7 @@
               <span class="window-tag">HALLOWEEN_PACK_2026.PDF</span>
             </div>
             <div class="showcase-image-wrap">
-              <picture>
-                <source srcset="topo.webp" type="image/webp">
-                <img src="topo.png" alt="Capa oficial do Kit 100 Atividades de Halloween em Inglês" width="800" height="800" fetchpriority="high">
-              </picture>
+              <img src="topo.webp" alt="Capa oficial do Kit 100 Atividades de Halloween em Inglês" width="800" height="800" fetchpriority="high">
               <div class="showcase-floating-tag">
                 <div class="floating-tag-icon">100</div>
                 <div class="floating-tag-text">
@@ -1271,10 +1239,7 @@
         <div class="carousel-layout">
           <button class="carousel-nav-btn" id="prev" aria-label="Atividade anterior">‹</button>
           <div class="carousel-viewport">
-            <picture>
-              <source id="sampleSource" srcset="carrossel01.webp" type="image/webp">
-              <img id="sample" src="carrossel01.png" alt="Amostra 1 das atividades de Halloween em inglês" width="700" height="989" loading="lazy">
-            </picture>
+            <img id="sample" src="carrossel01.webp" alt="Amostra 1 das atividades de Halloween em inglês" width="700" height="989" loading="lazy">
           </div>
           <button class="carousel-nav-btn" id="next" aria-label="Próxima atividade">›</button>
         </div>
@@ -1356,10 +1321,7 @@
         <div class="test-carousel-layout">
           <button class="carousel-nav-btn" id="prevTest" aria-label="Depoimento anterior">‹</button>
           <div class="test-carousel-viewport">
-            <picture>
-              <source id="testSampleSource" srcset="depoimento01.webp" type="image/webp">
-              <img id="testSample" src="depoimento01.png" alt="Depoimento real 1 de cliente sobre as atividades de Halloween" width="560" height="700" loading="lazy">
-            </picture>
+            <img id="testSample" src="depoimento01.webp" alt="Depoimento real 1 de cliente sobre as atividades de Halloween" width="560" height="700" loading="lazy">
           </div>
           <button class="carousel-nav-btn" id="nextTest" aria-label="Próximo depoimento">›</button>
         </div>
@@ -1500,18 +1462,17 @@
 
   <!-- Scripts – no final do body para não bloquear renderização -->
   <script>
-    // Carrossel de amostras (WebP com fallback PNG)
+    // Carrossel de amostras (WebP direto)
     var samples = [
-      {webp: "carrossel01.webp", png: "carrossel01.png"},
-      {webp: "carrossel02.webp", png: "carrossel02.png"},
-      {webp: "carrossel03.webp", png: "carrossel03.png"},
-      {webp: "carrossel04.webp", png: "carrossel04.png"},
-      {webp: "carrossel05.webp", png: "carrossel05.png"},
-      {webp: "carrossel06.webp", png: "carrossel06.png"}
+      "carrossel01.webp",
+      "carrossel02.webp",
+      "carrossel03.webp",
+      "carrossel04.webp",
+      "carrossel05.webp",
+      "carrossel06.webp"
     ];
     var cur = 0;
     var img = document.getElementById('sample');
-    var imgSource = document.getElementById('sampleSource');
     var dots = document.getElementById('dots');
     var counter = document.getElementById('counter');
 
@@ -1527,11 +1488,10 @@
       cur = (i + samples.length) % samples.length;
       img.style.opacity = '0.3';
       setTimeout(function() {
-        imgSource.srcset = samples[cur].webp;
-        img.src = samples[cur].png;
+        img.src = samples[cur];
         img.alt = 'Amostra ' + (cur + 1) + ' das atividades de Halloween em inglês';
         img.style.opacity = '1';
-      }, 100);
+      }, 80);
       if (counter) {
         counter.textContent = 'Amostra ' + (cur + 1) + ' de ' + samples.length;
       }
@@ -1543,15 +1503,14 @@
     document.getElementById('prev').onclick = function() { go(cur - 1); };
     document.getElementById('next').onclick = function() { go(cur + 1); };
 
-    // Carrossel de depoimentos (WebP com fallback PNG)
+    // Carrossel de depoimentos (WebP direto)
     var testSamples = [
-      {webp: "depoimento01.webp", png: "depoimento01.png"},
-      {webp: "depoimento02.webp", png: "depoimento02.png"},
-      {webp: "depoimento03.webp", png: "depoimento03.png"}
+      "depoimento01.webp",
+      "depoimento02.webp",
+      "depoimento03.webp"
     ];
     var testCur = 0;
     var testImg = document.getElementById('testSample');
-    var testImgSource = document.getElementById('testSampleSource');
     var testDots = document.getElementById('testDots');
     var testCounter = document.getElementById('testCounter');
 
@@ -1567,11 +1526,10 @@
       testCur = (i + testSamples.length) % testSamples.length;
       testImg.style.opacity = '0.3';
       setTimeout(function() {
-        testImgSource.srcset = testSamples[testCur].webp;
-        testImg.src = testSamples[testCur].png;
+        testImg.src = testSamples[testCur];
         testImg.alt = 'Depoimento real ' + (testCur + 1) + ' sobre as atividades de Halloween';
         testImg.style.opacity = '1';
-      }, 100);
+      }, 80);
       if (testCounter) {
         testCounter.textContent = 'Depoimento ' + (testCur + 1) + ' de ' + testSamples.length;
       }
@@ -1585,6 +1543,7 @@
 
     // Suporte a swipe para mobile nos dois carrosséis
     function setupSwipe(element, onSwipeLeft, onSwipeRight) {
+      if (!element) return;
       var startX = 0, startY = 0;
       element.addEventListener('touchstart', function(e) {
         startX = e.changedTouches[0].screenX;
@@ -1600,20 +1559,6 @@
     }
     setupSwipe(img, function() { go(cur + 1); }, function() { go(cur - 1); });
     setupSwipe(testImg, function() { goTest(testCur + 1); }, function() { goTest(testCur - 1); });
-
-    // Rastreamento automático InitiateCheckout para links de checkout Wiapy
-    document.querySelectorAll('a[href*="pay.wiapy.com"]').forEach(function(link) {
-      link.addEventListener('click', function() {
-        var isPremium = link.href.indexOf('bR6cSFcwKdlA') !== -1;
-        if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout', {
-            content_name: isPremium ? 'Kit Teacher Premium' : 'Pacote Basico',
-            value: isPremium ? 17.90 : 10.00,
-            currency: 'BRL'
-          });
-        }
-      });
-    });
 
     // Contador regressivo de 4h (reinicia por visitante a cada 4h)
     (function() {
@@ -1639,6 +1584,68 @@
       tick();
       setInterval(tick, 1000);
     })();
+
+    // ==========================================
+    // CARREGAMENTO INTELIGENTE DE TRACKING
+    // (Meta Pixel 4651945478371062 + UTMify)
+    // Ativa na primeira interação do usuário ou após 3.5s
+    // Elimina bloqueios de TBT e renderização no PageSpeed!
+    // ==========================================
+    var _trackingStarted = false;
+    function loadTracking() {
+      if (_trackingStarted) return;
+      _trackingStarted = true;
+
+      // Iniciar Meta Pixel
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      
+      fbq('init', '4651945478371062');
+      fbq('track', 'PageView');
+
+      // Iniciar UTMify
+      var utmScript = document.createElement('script');
+      utmScript.src = 'https://cdn.utmify.com.br/scripts/utms/latest.js';
+      utmScript.async = true;
+      utmScript.setAttribute('data-utmify-prevent-xcod-sck', 'true');
+      utmScript.setAttribute('data-utmify-prevent-subids', 'true');
+      document.body.appendChild(utmScript);
+    }
+
+    // Carrega em qualquer interação humana (scroll, toque, movimento de mouse, tecla ou clique)
+    var interactionEvents = ['scroll', 'touchstart', 'mousemove', 'keydown', 'click'];
+    function onFirstUserInteraction() {
+      loadTracking();
+      interactionEvents.forEach(function(evt) {
+        window.removeEventListener(evt, onFirstUserInteraction, { passive: true });
+      });
+    }
+    interactionEvents.forEach(function(evt) {
+      window.addEventListener(evt, onFirstUserInteraction, { passive: true });
+    });
+    // Fallback de segurança se o visitante não interagir por 3.5 segundos
+    setTimeout(loadTracking, 3500);
+
+    // Rastreamento automático InitiateCheckout para links de checkout Wiapy
+    document.querySelectorAll('a[href*="pay.wiapy.com"]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        loadTracking();
+        var isPremium = link.href.indexOf('bR6cSFcwKdlA') !== -1;
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            content_name: isPremium ? 'Kit Teacher Premium' : 'Pacote Basico',
+            value: isPremium ? 17.90 : 10.00,
+            currency: 'BRL'
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
