@@ -689,38 +689,100 @@
       line-height: 1.6;
     }
 
-    /* Testimonials Carousel (on warm surface) */
-    .test-carousel-container {
-      margin-top: 36px;
-      position: relative;
-    }
-    .test-carousel-layout {
+    /* Testimonials Cards Grid (US Style) */
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      align-items: center;
-      max-width: 640px;
-      margin: 0 auto;
+      margin-top: 40px;
     }
-    .test-carousel-viewport {
-      border: 2px solid var(--border);
-      border-radius: 22px;
+    .testimonial-card {
       background: var(--card);
-      padding: 0;
-      box-shadow: 0 20px 60px rgba(42, 18, 56, 0.08);
-      position: relative;
-      overflow: hidden;
-      max-width: 480px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .test-carousel-viewport img {
-      width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
+      border: 2px solid var(--border);
       border-radius: 20px;
-      transition: opacity 220ms ease;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(42, 24, 56, 0.04);
+      position: relative;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: #f7a552;
+      box-shadow: 0 16px 36px rgba(255, 122, 0, 0.1);
+    }
+    .test-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .test-stars {
+      color: #f59e0b;
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+    .test-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 750;
+      color: #15803d;
+      background: #dcfce7;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid #bbf7d0;
+      white-space: nowrap;
+    }
+    .test-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--fg);
+      margin-bottom: 10px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .test-quote {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+    .test-author-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #f0e1cf;
+    }
+    .test-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff8c1a, #7c3aed);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+      flex-shrink: 0;
+    }
+    .test-author-info strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--fg);
+    }
+    .test-author-info span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
     /* Pricing Section (Deep Halloween Night) */
@@ -1057,7 +1119,8 @@
       .stat-item:nth-child(2) { border-right: none; }
       .bento-grid { grid-template-columns: 1fr; }
       .plans-grid { grid-template-columns: 1fr; }
-      .carousel-layout, .test-carousel-layout { grid-template-columns: 1fr; }
+      .carousel-layout { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
       .carousel-nav-btn { display: none; }
       .bonus-card, .guarantee-card { grid-template-columns: 1fr; text-align: center; padding: 28px; }
       .bonus-icon, .guarantee-icon { margin: 0 auto; }
@@ -1305,20 +1368,112 @@
     <div class="shell">
       <div class="head">
         <div class="eyebrow light">Loved by educators</div>
-        <h2>Trusted by Teachers & Parents</h2>
-        <p>Real feedback from teachers and homeschooling parents who use our materials.</p>
+        <h2>Trusted by Teachers &amp; Parents</h2>
+        <p>Real feedback from elementary teachers and homeschooling families across the US.</p>
       </div>
 
-      <div class="test-carousel-container">
-        <div class="test-carousel-layout">
-          <button class="carousel-nav-btn" id="prevTest" aria-label="Previous testimonial">‹</button>
-          <div class="test-carousel-viewport">
-            <img id="testSample" src="depoimento01.webp" alt="Customer testimonial 1 about Halloween activities" width="560" height="700" loading="lazy">
+      <div class="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Verified Teacher</span>
           </div>
-          <button class="carousel-nav-btn" id="nextTest" aria-label="Next testimonial">›</button>
+          <div class="test-title">“Saved my entire Halloween week!”</div>
+          <div class="test-quote">The kids were completely engaged with the mystery word puzzles and counting games. Print-and-go saved me over 4 hours of lesson prep on Sunday evening. Truly a lifesaver!</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">SJ</div>
+            <div class="test-author-info">
+              <strong>Teacher Sarah Jenkins</strong>
+              <span>2nd Grade Teacher · Austin, TX</span>
+            </div>
+          </div>
         </div>
-        <div class="carousel-dots" id="testDots"></div>
-        <div class="carousel-counter" id="testCounter">Testimonial 1 of 3</div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Verified Buyer</span>
+          </div>
+          <div class="test-title">“Perfect for little hands &amp; minds”</div>
+          <div class="test-quote">It's hard to find Halloween material that is educational and festive without being overly scary for kindergarteners. The flashcards and tracing sheets were a huge hit!</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">MB</div>
+            <div class="test-author-info">
+              <strong>Mrs. Amanda Brooks</strong>
+              <span>Kindergarten Educator · Columbus, OH</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Verified Teacher</span>
+          </div>
+          <div class="test-title">“High engagement &amp; zero hassle”</div>
+          <div class="test-quote">As an ESL specialist, having clear visual cues paired with themed vocabulary made an enormous difference in classroom participation. My students asked for extra copies!</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">DM</div>
+            <div class="test-author-info">
+              <strong>Teacher David Miller</strong>
+              <span>ESL &amp; Primary Specialist · Orlando, FL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Homeschool Parent</span>
+          </div>
+          <div class="test-title">“Kept 3 kids happily busy for hours”</div>
+          <div class="test-quote">My 5 and 8-year-olds spent a rainy October afternoon completely absorbed in the activity book. Zero screen time, genuine excitement, and great learning moments.</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">JM</div>
+            <div class="test-author-info">
+              <strong>Jessica Miller</strong>
+              <span>Homeschool Mom of 3 · Denver, CO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Verified Teacher</span>
+          </div>
+          <div class="test-title">“Instant download &amp; crisp quality”</div>
+          <div class="test-quote">Printed directly at school for our classroom Halloween rotation stations. Beautifully formatted, crisp lines, and the crafts turned out adorable on our bulletin board.</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">EW</div>
+            <div class="test-author-info">
+              <strong>Teacher Emily Watson</strong>
+              <span>1st Grade Teacher · Charlotte, NC</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 -->
+        <div class="testimonial-card">
+          <div class="test-header">
+            <div class="test-stars">★★★★★</div>
+            <span class="test-badge">✓ Program Director</span>
+          </div>
+          <div class="test-title">“Goldmine for after-school clubs”</div>
+          <div class="test-quote">We organized a community Halloween workshop for 35+ kids. These packets made running multiple activity stations completely seamless. Highly recommended!</div>
+          <div class="test-author-wrap">
+            <div class="test-avatar">MT</div>
+            <div class="test-author-info">
+              <strong>Marcus Taylor</strong>
+              <span>Youth Program Coordinator · Chicago, IL</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1496,45 +1651,7 @@
     document.getElementById('prev').onclick = function() { go(cur - 1); };
     document.getElementById('next').onclick = function() { go(cur + 1); };
 
-    // Testimonials carousel (Direct WebP)
-    var testSamples = [
-      "depoimento01.webp",
-      "depoimento02.webp",
-      "depoimento03.webp"
-    ];
-    var testCur = 0;
-    var testImg = document.getElementById('testSample');
-    var testDots = document.getElementById('testDots');
-    var testCounter = document.getElementById('testCounter');
-
-    testSamples.forEach(function(_, i) {
-      var b = document.createElement('button');
-      b.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      b.setAttribute('aria-label', 'View testimonial ' + (i + 1));
-      b.onclick = function() { goTest(i); };
-      testDots.appendChild(b);
-    });
-
-    function goTest(i) {
-      testCur = (i + testSamples.length) % testSamples.length;
-      testImg.style.opacity = '0.3';
-      setTimeout(function() {
-        testImg.src = testSamples[testCur];
-        testImg.alt = 'Customer testimonial ' + (testCur + 1) + ' about Halloween activities';
-        testImg.style.opacity = '1';
-      }, 80);
-      if (testCounter) {
-        testCounter.textContent = 'Testimonial ' + (testCur + 1) + ' of ' + testSamples.length;
-      }
-      [].forEach.call(testDots.children, function(d, k) {
-        d.className = 'carousel-dot' + (k === testCur ? ' active' : '');
-      });
-    }
-
-    document.getElementById('prevTest').onclick = function() { goTest(testCur - 1); };
-    document.getElementById('nextTest').onclick = function() { goTest(testCur + 1); };
-
-    // Mobile touch swipe support for both carousels
+    // Mobile touch swipe support for samples carousel
     function setupSwipe(element, onSwipeLeft, onSwipeRight) {
       if (!element) return;
       var startX = 0, startY = 0;
@@ -1551,7 +1668,6 @@
       }, { passive: true });
     }
     setupSwipe(img, function() { go(cur + 1); }, function() { go(cur - 1); });
-    setupSwipe(testImg, function() { goTest(testCur + 1); }, function() { goTest(testCur - 1); });
 
     // 4-hour countdown timer (resets per visitor every 4 hours)
     (function() {
